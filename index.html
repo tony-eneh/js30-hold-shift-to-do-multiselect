@@ -60,10 +60,15 @@
             border-left: 1px solid crimson;
             padding-right: 1em;
             width: 100%;
+            /* text-decoration: line-through; */
         }
         
         ul span:hover {
             background-color: rgb(0, 202, 202)
+        }
+        
+        .strike {
+            text-decoration: line-through;
         }
     </style>
 </head>
@@ -79,6 +84,29 @@
         <li><input type="checkbox" name="" id=""><span class="label">Agidi</span></li>
         <li><input type="checkbox" name="" id=""><span class="label">Edikaikong</span></li>
     </ul>
+    <script>
+        /*fetch elements */
+        let checkBoxes = document.querySelectorAll('input[type=checkbox]');
+
+        /*function definitions*/
+        function toggleStrike(e) {
+            // console
+            if (e.currentTarget.nextElementSibling.classList.contains('strike')) {
+                e.currentTarget.nextElementSibling.classList.remove('strike');
+            } else {
+                e.currentTarget.nextElementSibling.classList.add('strike');
+            }
+        }
+
+        /*hook event listeners*/
+        checkBoxes.forEach((checkBox) => {
+            checkBox.addEventListener('input', toggleStrike)
+        });
+
+        checkBoxes.forEach((checkBox) => {
+            checkBox.addEventListener('uncheck', toggleStrike)
+        });
+    </script>
 </body>
 
 </html>
