@@ -55,6 +55,10 @@
             margin-left: 1em;
         }
         
+        ul input[type=checkbox]:checked+span {
+            text-decoration: line-through;
+        }
+        
         ul span {
             padding-left: 1em;
             border-left: 1px solid crimson;
@@ -108,14 +112,12 @@
                     }
                     if (shouldCheck) {
                         checkBox.checked = true;
-                        checkBox.nextElementSibling.classList.toggle('strike')
+                        // checkBox.nextElementSibling.classList.toggle('strike')
                     }
-
-                    //this here also refers to e.currentTarget 
                     // console.log(lastChecked);
                 });
             }
-            lastChecked = this;
+            lastChecked = this; //this here also refers to e.currentTarget 
         }
         /*hook event listeners*/
         // checkBoxes.forEach((checkBox) => {
