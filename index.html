@@ -88,24 +88,47 @@
         /*fetch elements */
         let checkBoxes = document.querySelectorAll('input[type=checkbox]');
 
+        let lastChecked;
+
         /*function definitions*/
         function toggleStrike(e) {
-            // console
-            if (e.currentTarget.nextElementSibling.classList.contains('strike')) {
-                e.currentTarget.nextElementSibling.classList.remove('strike');
-            } else {
-                e.currentTarget.nextElementSibling.classList.add('strike');
+            // console.dir(e.currentTarget);
+            console.log(this);
+            if (e.shiftKey && this.checked) {
+                // let index = checkBoxes.indexOf(e.currentTarget);
+                // for (let i = 0; i <= index; i++) {
+                //     checkBoxes[i].check();
+                // }
+                let shouldCheck = false;
+                checkBoxes.forEach((checkBox) => {
+                    // console.log(this);
+                    if (checkBox === this || checkBox === lastChecked) {
+                        //start checking
+                        shouldCheck = !shouldCheck;
+                    }
+                    if (shouldCheck) {
+                        checkBox.checked = true;
+                        checkBox.nextElementSibling.classList.toggle('strike')
+                    }
+
+                    //this here also refers to e.currentTarget 
+                    // console.log(lastChecked);
+                });
             }
+            lastChecked = this;
         }
-
         /*hook event listeners*/
-        checkBoxes.forEach((checkBox) => {
-            checkBox.addEventListener('input', toggleStrike)
-        });
+        // checkBoxes.forEach((checkBox) => {
+        //     checkBox.addEventListener('input', toggleStrike)
+        // });
 
         checkBoxes.forEach((checkBox) => {
-            checkBox.addEventListener('uncheck', toggleStrike)
+            checkBox.addEventListener('click', toggleStrike)
         });
+
+        // checkBoxes.forEach((checkBox) => {
+        //     checkBox.addEventListener('uncheck', toggleStrike)
+        // });
     </script>
 </body>
 
